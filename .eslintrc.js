@@ -8,6 +8,9 @@ module.exports = {
     'react/prop-types': 0,
     'react/self-closing-comp': 0,
     'react/display-name': 0,
+    'no-shadow': 'off',
+    'no-unused-vars': 'off',
+   
 
     // JavaScript
     semi: 0,
@@ -20,6 +23,8 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 0,
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/semi': ['error'],
+    '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-shadow': ['error'],
   },
   parser: '@typescript-eslint/parser',
   plugins: [

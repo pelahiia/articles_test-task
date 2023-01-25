@@ -1,0 +1,9 @@
+@import "./vars";
+@import "./typography.scss";
+@import './blocks/homePage.scss';
+@import './blocks/articleCard.scss';
+@import './blocks//loader.scss';
+
+.body {
+  max-width: 1024px;
+}
