@@ -8,7 +8,7 @@ type Props = {
 
 export const ArticlesList: React.FC<Props> = ({ articles }) => (
   <div className="articles">
-    {articles.map(article => (
+    {articles.map((article: Article) => (
       <ArticleCard article={article} key={article.id} />
     ))}
   </div>

@@ -47,9 +47,9 @@ export const ArticleCard: React.FC<Props> = ({ article }) => {
           </p>
         </div>
 
-        <div className="readmore">
+        <div className="read-more">
           <a
-            className="readmore-link"
+            className="read-more-link"
             href={url}
             target="_blank"
             rel="noopener noreferrer"
@@ -57,7 +57,7 @@ export const ArticleCard: React.FC<Props> = ({ article }) => {
             Read more
           </a>
           <img
-            className="readmore-icon"
+            className="read-more-icon"
             src={readmoreIcon}
             alt="Read more icon"
           />

@@ -4,9 +4,10 @@ import { ErrorType } from '../types/ErrorType';
 
 type Props = {
   error: ErrorType,
+  closeError: () => void,
 };
 
-export const ErrorMessage: React.FC<Props> = ({ error }) => {
+export const ErrorMessage: React.FC<Props> = ({ error, closeError }) => {
   let errorMessage = '';
 
   switch (error) {
@@ -25,9 +26,14 @@ export const ErrorMessage: React.FC<Props> = ({ error }) => {
   return (
     <Alert
       severity="error"
+      className="alert-message"
       action={(
-        <Button color="inherit" size="small">
-          UNDO
+        <Button
+          color="inherit"
+          size="small"
+          onClick={closeError}
+        >
+          CLOSE
         </Button>
       )}
     >

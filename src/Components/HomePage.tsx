@@ -6,6 +6,7 @@ import {
   IconButton,
   createTheme,
   ThemeProvider,
+  CircularProgress,
 } from '@mui/material';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@mui/material/Typography';
@@ -15,7 +16,6 @@ import { getArticles } from '../api/articles';
 import { ErrorType } from '../types/ErrorType';
 import { Article } from '../types/Article';
 import { ArticlesList } from './ArticlesList';
-import { Loader } from './Loader';
 import { ErrorMessage } from './ErrorMessage';
 
 const theme = createTheme({
@@ -29,11 +29,11 @@ const theme = createTheme({
 });
 
 export const HomePage: React.FC = () => {
-  const [articles, setArticles] = useState<Article[]>([]);
+  const [allArticles, setAllArticles] = useState<Article[]>([]);
   const [error, setError] = useState<ErrorType | null>(null);
-  const [query, setQuery] = useState('');
-  const [visibleArticles, setVisibleArticles] = useState<Article[]>(articles);
-  const [isLoading, setIsLoading] = useState(false);
+  const [query, setQuery] = useState<string>('');
+  const [visibleArticles, setVisibleArticles] = useState<Article[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const loadArticles = async () => {
     setIsLoading(true);
@@ -41,7 +41,7 @@ export const HomePage: React.FC = () => {
     try {
       const loadedArticles = await getArticles();
 
-      setArticles(loadedArticles);
+      setAllArticles(loadedArticles);
       setVisibleArticles(loadedArticles);
     } catch {
       setError(ErrorType.LOAD);
@@ -63,10 +63,11 @@ export const HomePage: React.FC = () => {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsLoading(true);
-    const articlesToShow = articles.filter((article) => {
+    setQuery(event.target.value);
+    const articlesToShow = allArticles.filter((article: Article) => {
       return (
-        article.title.toLocaleLowerCase().includes(query.toLocaleLowerCase())
-        || article.summary.toLocaleLowerCase().includes(query.toLocaleLowerCase())
+        article.title.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())
+        || article.summary.toLocaleLowerCase().includes(event.target.value.toLocaleLowerCase())
       );
     });
 
@@ -77,7 +78,6 @@ export const HomePage: React.FC = () => {
       setIsLoading(false);
     }
 
-    setQuery(event.target.value);
     setIsLoading(false);
   };
 
@@ -120,11 +120,14 @@ export const HomePage: React.FC = () => {
           <ArticlesList articles={visibleArticles} />
         </Marker>
       ) : (
-        <Loader />
+        <CircularProgress />
       )}
 
       {error && (
-        <ErrorMessage error={error} />
+        <ErrorMessage
+          error={error}
+          closeError={() => setError(null)}
+        />
       )}
     </div>
   );

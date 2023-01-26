@@ -35,7 +35,7 @@
     }
 
     &-left {
-      font-style: 14px;
+      font-size: 14px;
       font-family: "MontserratLight", sans-serif;
       color: $colorBlack;
     }
@@ -75,7 +75,7 @@
   -webkit-line-clamp: 4
 }
 
-.readmore {
+.read-more {
   display: flex;
   justify-content: start;
   align-items: flex-end;

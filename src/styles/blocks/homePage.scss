@@ -14,9 +14,13 @@ body {
 }
 
 .home__result__text {
-  width: 1260;
+  width: 1260px;
   border-bottom: 1px solid $colorLightGray;
   font-family: "MontserratLight", sans-serif;
   font-weight: 600;
   font-size: 16px;
+}
+
+.alert-message {
+  margin-top: 50px;
 }
